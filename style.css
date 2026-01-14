@@ -1,0 +1,246 @@
+/* 1. RESET Y CONFIGURACIÓN GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+    /* Oculta cursor real para usar el de Tron */
+}
+
+body {
+    background-color: #070505;
+    font-family: sans-serif;
+    /* Priorizamos sans-serif según tus estilos */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 2. ELEMENTOS DE FONDO Y CURSOR */
+#canvas-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#tron-cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #ff0000;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+}
+
+/* 3. TARJETA DE PERFIL (CONTENEDOR) */
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    z-index: 10;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #0c0a0a;
+}
+
+/* 4. TEXTOS DE INFORMACIÓN */
+.info h1 {
+    font-size: 90px;
+    font-weight: 800;
+    color: #fffb00;
+    line-height: 1;
+}
+
+.info h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #fffdfd;
+}
+
+.tagline {
+    font-size: 18px;
+    color: #fdf9f9;
+    margin-bottom: 20px;
+}
+
+/* 5. BOTONES SOCIALES Y LEYENDAS (TOOLTIPS) */
+.social-links {
+    display: flex;
+    gap: 32px;
+    font-size: 32px;
+}
+
+.social-links a {
+    color: #333;
+    text-decoration: none;
+    transition: 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Pseudo-elemento para la leyenda (Tooltip) */
+.social-links a::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 40px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Hover general para activar leyenda */
+.social-links a:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 6. COLORES INDIVIDUALES (HOVER) */
+/* Item 1 - Rojo */
+.social-links a:nth-child(1):hover i {
+    color: #FF0000;
+    filter: drop-shadow(0 0 8px #ff0505);
+}
+
+.social-links a:nth-child(1)::after {
+    color: #f7fafa;
+}
+
+/* Item 2 - Azul LinkedIn */
+.social-links a:nth-child(2):hover i {
+    color: #0077b5;
+    filter: drop-shadow(0 0 8px #0077b5);
+}
+
+.social-links a:nth-child(2)::after {
+    color: #f9fcfd;
+}
+
+/* Item 3 - Blanco/Gris */
+.social-links a:nth-child(3):hover i {
+    color: #fdfcfc;
+    filter: drop-shadow(0 0 5px #ccc);
+}
+
+.social-links a:nth-child(3)::after {
+    color: #fdfcfc;
+}
+
+/* 7. FOOTER (MODAL FLOTANTE SIN BARRAS DE DESPLAZAMIENTO) */
+.email-footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fd0202;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fcf9f9;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 7, 7, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 7, 7, 0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+/* Estilo del botón (Summary) */
+.email-footer summary {
+    list-style: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-footer summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Cuando está abierto el details */
+.email-footer[open] {
+    border-radius: 15px;
+    width: 350px;
+}
+
+/* Contenedor de la llave que flota HACIA ARRIBA */
+.pgp-container {
+    position: absolute;
+    bottom: 100%;    /* Aparece por encima del botón */
+    right: 0;
+    margin-bottom: 15px;
+    background: #000;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #fd0202;
+    box-shadow: 0 0 30px rgba(255, 2, 2, 0.5);
+    width: 100%;
+    animation: slideUp 0.3s ease;
+}
+
+/* Estilo de la llave PGP */
+.pgp-key {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #f8faf8;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 250px;
+    overflow-y: scroll; /* Permite scroll pero ocultaremos la barra */
+    scrollbar-width: none; /* Oculta en Firefox */
+    -ms-overflow-style: none; /* Oculta en IE y Edge */
+}
+
+/* Ocultar barra de desplazamiento en Chrome, Safari y Opera */
+.pgp-key::-webkit-scrollbar {
+    display: none;
+}
+
+/* Animación de entrada */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón de copiar */
+.copy-btn {
+    background: #ff0707;
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.copy-btn:hover {
+    background: #fffb00;
+    color: #070707;
+    font-weight: 800;
+}
