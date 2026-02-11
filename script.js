@@ -89,3 +89,18 @@ function copyPGP() {
         setTimeout(() => btn.innerText = "COPY kEY", 2000);
     });
 }
+
+// Función para abrir tarjetas
+function expandCard(card) {
+    card.classList.toggle('active');
+}
+
+init();
+animate();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    particlesArray = [];
+    init();
+});
