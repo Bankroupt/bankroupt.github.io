@@ -1,24 +1,55 @@
-/* 1. RESET Y CONFIGURACIÓN GLOBAL */
+/* --- 1. RESET Y CONFIGURACIÓN GLOBAL --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
-    /* Oculta cursor real para usar el de Tron */
+}
+
+/* Scrollbar Minimalista (Estilo invisible/elegante) */
+::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Soporte para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+@media (min-width: 1024px) {
+    * {
+        cursor: none;
+        /* Oculta cursor real en PC */
+    }
 }
 
 body {
     background-color: #070505;
     font-family: sans-serif;
-    /* Priorizamos sans-serif según tus estilos */
-    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* Cambiado a columna para que el contenido fluya hacia abajo */
     align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    /* Evita scroll lateral */
+    overflow-y: auto;
+    /* ACTIVA el scroll vertical */
+    padding: 20px;
 }
 
-/* 2. ELEMENTOS DE FONDO Y CURSOR */
+/* --- 2. ELEMENTOS DE FONDO Y CURSOR --- */
 #canvas-fondo {
     position: fixed;
     top: 0;
@@ -38,7 +69,43 @@ body {
     transition: transform 0.1s ease;
 }
 
-/* 3. TARJETA DE PERFIL (CONTENEDOR) */
+@media (max-width: 1024px) {
+    #tron-cursor {
+        display: none;
+    }
+
+    * {
+        cursor: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        /* Apila los elementos verticalmente */
+        text-align: center;
+        gap: 20px;
+    }
+
+    /* EL TRUCO ESTÁ AQUÍ: */
+    .avatar-container {
+        order: 1;
+        /* El avatar va primero (arriba) */
+    }
+
+    .info {
+        order: 2;
+        /* Toda la información (h1, h2, etc.) va después */
+    }
+
+    /* Ajuste extra para que el avatar no sea gigante en móvil */
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* --- 3. TARJETA DE PERFIL --- */
 .profile-card {
     display: flex;
     align-items: center;
@@ -54,7 +121,7 @@ body {
     border: 4px solid #0c0a0a;
 }
 
-/* 4. TEXTOS DE INFORMACIÓN */
+/* --- 4. TEXTOS DE INFORMACIÓN --- */
 .info h1 {
     font-size: 90px;
     font-weight: 800;
@@ -63,10 +130,10 @@ body {
 }
 
 .info h2 {
-    font-size: 24px;
+    font-size: font-size: 24px;
     font-weight: 800;
     margin-bottom: 15px;
-    color: #fffdfd;
+    color: #fdf9f9;
 }
 
 .tagline {
@@ -75,7 +142,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* 5. BOTONES SOCIALES Y LEYENDAS (TOOLTIPS) */
+/* --- 5. BOTONES SOCIALES Y TOOLTIPS --- */
 .social-links {
     display: flex;
     gap: 32px;
@@ -105,7 +172,7 @@ body {
     white-space: nowrap;
     pointer-events: none;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-transform: uppercase;;
 }
 
 /* Hover general para activar leyenda */
@@ -114,37 +181,137 @@ body {
     transform: translateY(0);
 }
 
-/* 6. COLORES INDIVIDUALES (HOVER) */
-/* Item 1 - Rojo */
+/* Colores Hover */
 .social-links a:nth-child(1):hover i {
-    color: #FF0000;
-    filter: drop-shadow(0 0 8px #ff0505);
+    color: #7520ff;
+    filter: drop-shadow(0 0 5px #7520ff);
 }
 
 .social-links a:nth-child(1)::after {
-    color: #f7fafa;
+    color: #f9fcfd;
 }
 
-/* Item 2 - Azul LinkedIn */
 .social-links a:nth-child(2):hover i {
-    color: #0077b5;
-    filter: drop-shadow(0 0 8px #0077b5);
+    color: #FF0000;
+    filter: drop-shadow(0 0 8px #ff0505);
 }
 
 .social-links a:nth-child(2)::after {
     color: #f9fcfd;
 }
 
-/* Item 3 - Blanco/Gris */
 .social-links a:nth-child(3):hover i {
+    color: #0077b5;
+    filter: drop-shadow(0 0 8px #0077b5);
+}
+
+.social-links a:nth-child(3)::after {
+    color: #f9fcfd;
+}
+
+.social-links a:nth-child(4):hover i {
     color: #fdfcfc;
     filter: drop-shadow(0 0 5px #ccc);
 }
 
-.social-links a:nth-child(3)::after {
-    color: #fdfcfc;
+.social-links a:nth-child(4)::after {
+    color: #f9fcfd;
 }
 
+/* --- 6. SECCIÓN DE DESTREZAS (GRID) --- */
+.expertise-section {
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px 0;
+    z-index: 10;
+}
+
+.main-title {
+    text-align: center;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    background: linear-gradient(to bottom, #fffb00 25%, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* --- 7. TARJETAS ESTILO LED --- */
+.card {
+    background: rgba(3, 1, 1, 0.411);
+    border: 1.5px solid var(--led-color);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 5px var(--led-color);
+    height: fit-content;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--led-color), inset 0 0 10px var(--led-color);
+}
+
+.card.active .content {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.subject-title {
+    font-size: 1.3rem;
+    color: var(--led-color);
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.content p {
+    font-size: 16px;
+    color: #ccc;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+}
+
+.subtopics {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.subtopics li {
+    padding: 5px 0;
+    color: #f9fcfd;
+    display: flex;
+    align-items: center;
+}
+
+.subtopics li::before {
+    content: "›";
+    color: var(--led-color);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* --- 8. FOOTER Y PGP MODAL --- */
 /* 7. FOOTER (MODAL FLOTANTE SIN BARRAS DE DESPLAZAMIENTO) */
 .email-footer {
     position: fixed;
@@ -186,7 +353,8 @@ body {
 /* Contenedor de la llave que flota HACIA ARRIBA */
 .pgp-container {
     position: absolute;
-    bottom: 100%;    /* Aparece por encima del botón */
+    bottom: 100%;
+    /* Aparece por encima del botón */
     right: 0;
     margin-bottom: 15px;
     background: #000;
@@ -206,9 +374,12 @@ body {
     white-space: pre-wrap;
     word-break: break-all;
     max-height: 250px;
-    overflow-y: scroll; /* Permite scroll pero ocultaremos la barra */
-    scrollbar-width: none; /* Oculta en Firefox */
-    -ms-overflow-style: none; /* Oculta en IE y Edge */
+    overflow-y: scroll;
+    /* Permite scroll pero ocultaremos la barra */
+    scrollbar-width: none;
+    /* Oculta en Firefox */
+    -ms-overflow-style: none;
+    /* Oculta en IE y Edge */
 }
 
 /* Ocultar barra de desplazamiento en Chrome, Safari y Opera */
@@ -218,8 +389,15 @@ body {
 
 /* Animación de entrada */
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Botón de copiar */
@@ -243,4 +421,5 @@ body {
     background: #fffb00;
     color: #070707;
     font-weight: 800;
+
 }
