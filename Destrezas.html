@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RL_Portafolio - Destrezas</title>
+    <link rel="icon" type="image/png" href="images/Favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tron-cursor"></div>
+    <canvas id="canvas-fondo"></canvas>
+
+    <div class="container">
+        <h1 class="main-title">Destrezas</h1>
+
+        <div class="grid-container">
+            <div class="card" style="--led-color: #ff0000;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">Pruebas de Pentesting</h2>
+                    <div class="content">
+                        <p>Práctica de atacar un sistema informático para encontrar vulnerabilidades que un atacante real podría explotar.</p>
+                        <ul class="subtopics">
+                            <li>Reconocimiento</li>
+                            <li>Enumeración</li>
+                            <li>Obtención de Acceso</li>
+                            <li>Escalabilidad</li>
+                            <li>Documentación</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--led-color: #ff0000;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">OSINT</h2>
+                    <div class="content">
+                        <p>Investigación de fuentes abiertas.</p>
+                        <ul class="subtopics">
+                            <li>Redes sociales</li>
+                            <li>Meta Información</li>
+                            <li>Registros públicos</li>
+                            <li>Registros web (docs)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--led-color: #ff0055;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">Programación de script's</h2>
+                    <div class="content">
+                        <p>Proceso de crear instrucciones para que una computadora realice tareas automáticas.</p>
+                        <ul class="subtopics">
+                            <li>Python</li>
+                            <li>Bash</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--led-color: #00e5ff;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">Hardening en sistemas</h2>
+                    <div class="content">
+                        <p>Reducción de vulnerabilidades mediante configuración y endurecimiento del sistema.</p>
+                        <ul class="subtopics">
+                            <li>Microsoft Windows</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--led-color: #68d9dd;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">Redes</h2>
+                    <div class="content">
+                        <p>Interconexión de dispositivos mediante tecnologías alámbricas e inalámbricas.</p>
+                        <ul class="subtopics">
+                            <li>Cableado estructurado</li>
+                            <li>Wifi / Hotspot</li>
+                            <li>Reglas Firewall</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="--led-color: #68d9dd;" onclick="expandCard(this)">
+                <div class="card-inner">
+                    <h2 class="subject-title">Soporte Técnico</h2>
+                    <div class="content">
+                        <p>Resolución de problemas tecnológicos y gestión de incidencias operativas.</p>
+                        <ul class="subtopics">
+                            <li>Soporte Operativo</li>
+                            <li>Gestión de Acceso</li>
+                            <li>Gestión de incidencias</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
