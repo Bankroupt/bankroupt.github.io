@@ -20,7 +20,6 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Soporte para Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
@@ -29,7 +28,6 @@
 @media (min-width: 1024px) {
     * {
         cursor: none;
-        /* Oculta cursor real en PC */
     }
 }
 
@@ -40,12 +38,9 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* Cambiado a columna para que el contenido fluya hacia abajo */
     align-items: center;
     overflow-x: hidden;
-    /* Evita scroll lateral */
     overflow-y: auto;
-    /* ACTIVA el scroll vertical */
     padding: 20px;
 }
 
@@ -82,23 +77,18 @@ body {
 @media (max-width: 768px) {
     .profile-card {
         flex-direction: column;
-        /* Apila los elementos verticalmente */
         text-align: center;
         gap: 20px;
     }
 
-    /* EL TRUCO ESTÁ AQUÍ: */
     .avatar-container {
         order: 1;
-        /* El avatar va primero (arriba) */
     }
 
     .info {
         order: 2;
-        /* Toda la información (h1, h2, etc.) va después */
     }
 
-    /* Ajuste extra para que el avatar no sea gigante en móvil */
     .avatar {
         width: 150px;
         height: 150px;
@@ -172,7 +162,8 @@ body {
     white-space: nowrap;
     pointer-events: none;
     letter-spacing: 1px;
-    text-transform: uppercase;;
+    text-transform: uppercase;
+    ;
 }
 
 /* Hover general para activar leyenda */
@@ -354,7 +345,6 @@ body {
 .pgp-container {
     position: absolute;
     bottom: 100%;
-    /* Aparece por encima del botón */
     right: 0;
     margin-bottom: 15px;
     background: #000;
@@ -375,11 +365,8 @@ body {
     word-break: break-all;
     max-height: 250px;
     overflow-y: scroll;
-    /* Permite scroll pero ocultaremos la barra */
     scrollbar-width: none;
-    /* Oculta en Firefox */
     -ms-overflow-style: none;
-    /* Oculta en IE y Edge */
 }
 
 /* Ocultar barra de desplazamiento en Chrome, Safari y Opera */
@@ -421,5 +408,69 @@ body {
     background: #fffb00;
     color: #070707;
     font-weight: 800;
+}
 
+/* Contenedor principal de la sección */
+.seccion-conocimientos {
+    width: 100%;
+    margin-top: 30px !important;
+    text-align: center;
+    padding: 0;
+}
+
+/* 2. Eliminamos los márgenes del título que empujan hacia abajo */
+.seccion-conocimientos .main-title {
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+    line-height: 1;
+}
+
+/* Fila de insignias centrada */
+.insignias-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Contenedor individual: Sin bordes ni fondos */
+.insignia-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+}
+
+/* La imagen dentro de la insignia */
+.insignia-item img {
+    max-width: 80%;
+    max-height: 80%;
+    filter: grayscale(100%) brightness(0.7);
+    transition: all 0.4s ease-in-out;
+}
+
+/* --- EFECTO DE BRILLO EN LA SILUETA (HOVER) --- */
+.insignia-item:hover img {
+    filter: grayscale(0%) brightness(1) drop-shadow(0 0 3px var(--color-led)) drop-shadow(0 0 9px var(--color-led));
+    transform: scale(1.3);
+}
+
+/* Tooltip con el nombre (data-label) que aparece abajo */
+.insignia-item:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
 }
