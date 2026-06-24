@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de RL</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-accent: #ffcc00;
+            --dragon-red: #d90429;
+            --card-bg: #0a0a0a;
+            --border-color: #222222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid var(--dragon-red);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--text-accent);
+            text-shadow: 0 0 8px rgba(217, 4, 41, 0.6);
+        }
+
+        .subtitle {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        /* Bloque de entradas de Blog */
+        .post {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 35px;
+            border-radius: 4px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .post:hover {
+            border-color: var(--dragon-red);
+            box-shadow: 0 0 15px rgba(217, 4, 41, 0.3);
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--dragon-red);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .post-title {
+            margin: 0 0 15px 0;
+            font-size: 1.6rem;
+            color: var(--text-accent);
+        }
+
+        .post-content {
+            color: var(--text-main);
+        }
+
+        .post-content p {
+            margin: 0 0 15px 0;
+        }
+
+        .tag {
+            background: #141414;
+            color: var(--text-accent);
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border: 1px solid var(--dragon-red);
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            opacity: 0.5;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>[ 🐉 ] Bitácora de RL</h1>
+        <div class="subtitle">Sistemas, Redes y Seguridad ofensiva.</div>
+    </header>
+
+    <main>
+        <article class="post">
+            <div class="post-meta">
+                <span>[2026-06-24]</span> | <span>Autor: RL</span>
+            </div>
+            <h2 class="post-title">> Titulo test 1</h2>
+            <div class="post-content">
+                <p>bla bla bla parrafo 1.</p>
+                <p>bla bla bla parrafo 2.</p>
+            </div>
+            <div style="margin-top: 15px;">
+                <span class="tag">#sysadmin</span>
+                <span class="tag">#linux</span>
+            </div>
+        </article>
+
+        <article class="post">
+            <div class="post-meta">
+                <span>[2026-06-24]</span> | <span>Autor: RL</span>
+            </div>
+            <h2 class="post-title">> Titulo test 2</h2>
+            <div class="post-content">
+                <p>bla bla bla parrafo 1.</p>
+                <p>bla bla bla parrafo 2.</p>
+            </div>
+            <div style="margin-top: 15px;">
+                <span class="tag">#sysadmin</span>
+                <span class="tag">#linux</span>
+            </div>
+        </article>
